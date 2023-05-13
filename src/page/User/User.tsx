@@ -57,7 +57,6 @@ const User : React.FC<{}> = (props) => {
           onClick={() => {
             if(record.id == 1) notification.error({message: '不能修改根用户权限'});
             else {
-            console.log(record.is_admin);
             console.log({
               id: record.id,
               is_admin: !record.is_admin});
@@ -77,11 +76,13 @@ const User : React.FC<{}> = (props) => {
 ];
   return (
     <PageContainer
-        
-        >
+      header={{
+        title:"管理用户"
+      }}
+      >
       
         <ProTable
-            
+            search={false}
             rowKey="id"
             dataSource={users}
             columns={columns}

@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import Layout from "/src/components/Layout/Layout.tsx"
-import User from "/src/page/user/User.tsx"
-import './App.css'
+import Layout from "/src/components/Layout/Layout"
+import User from "/src/page/User/User"
+import Category from '/src/page/Category/Category';
+import CategoryManagement from '/src/page/Category/CategoryManagement';
 
 const queryClient = new QueryClient();
 function App() {
@@ -29,6 +30,8 @@ function App() {
             }
           >
             <Route path="/user" element={<User />} />
+            <Route path="/category" element={<Category />} />
+            <Route path="/category/:id" element={<CategoryManagement/>} />
             {/* <Route path="/oi-contest" element={<OIContestList />} />
             <Route path="/oi-contest/:_id" element={<OIContestManagement />} />
             <Route path="/video" element={<VideoList />} />

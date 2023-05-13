@@ -15,6 +15,8 @@ export interface ICategory {
     id:        uint
     name:      string
     cover:     string
+    tags:      ITag[]
+    passages:  IPassage[]
 }
 
 export interface ITag {

@@ -1,29 +1,24 @@
 import React from 'react';
-import { ProLayout } from '@ant-design/pro-components';
-import { Outlet } from 'react-router-dom';
-import { RobotOutlined,TeamOutlined,FileTextOutlined,FolderOpenOutlined } from '@ant-design/icons';
-import PropTypes from 'prop-types';
+import { PageContainer, ProLayout } from '@ant-design/pro-components';
+import { Outlet,NavLink } from 'react-router-dom';
+import { TeamOutlined,FileTextOutlined,FolderOpenOutlined } from '@ant-design/icons';
+
 
 const route = {
     path: '/',
     routes: [
-    //   {
-    //     path: '/admin',
-    //     name: '管理管理员',
-    //     icon: <RobotOutlined />,
-    //   },
       {
-        path: '/user',
+        path: '/user/',
         name: '管理用户',
         icon: <TeamOutlined />,
       },
       {
-        path: '/passage',
+        path: '/passage/',
         name: '管理文章',
         icon: <FileTextOutlined />,
       },
       {
-        path: '/category',
+        path: '/category/',
         name: '管理类别',
         icon: <FolderOpenOutlined />,
       }
@@ -34,18 +29,18 @@ const route = {
 const Layout : React.FC<{}> = (props) => {
   return (
     <ProLayout
-        title = "blog-admin"
+        title = "博客管理系统"
         locale='zh-CN'
         logo="https://em-content.zobj.net/thumbs/60/google/350/woman-judge_1f469-200d-2696-fe0f.png"
         route={route}
+        menuItemRender={(item:any, dom:any) => 
+          <NavLink to={item.path || '/'}>{dom}</NavLink>
+        }
     >
-        <Outlet/>
+      <Outlet/>
     </ProLayout>
   );
 }
 
-Layout.propTypes = {
-  
-}
 
 export default Layout;
