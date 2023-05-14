@@ -1,7 +1,7 @@
 import React from 'react';
-import { PageContainer, ProLayout } from '@ant-design/pro-components';
+import {  ProLayout } from '@ant-design/pro-components';
 import { Outlet,NavLink } from 'react-router-dom';
-import { TeamOutlined,FileTextOutlined,FolderOpenOutlined } from '@ant-design/icons';
+import { TeamOutlined,FileTextOutlined,FolderOpenOutlined,TagOutlined } from '@ant-design/icons';
 
 
 const route = {
@@ -21,6 +21,11 @@ const route = {
         path: '/category/',
         name: '管理类别',
         icon: <FolderOpenOutlined />,
+      },
+      {
+        path:'/tag/',
+        name:'管理标签',
+        icon:<TagOutlined />,
       }
     ],
   }

@@ -5,6 +5,8 @@ import Layout from "/src/components/Layout/Layout"
 import User from "/src/page/User/User"
 import Category from '/src/page/Category/Category';
 import CategoryManagement from '/src/page/Category/CategoryManagement';
+import TagManagement from './page/Tag/TagManagement';
+import Passage from './page/Passage/Passage';
 
 const queryClient = new QueryClient();
 function App() {
@@ -31,7 +33,7 @@ function App() {
           >
             <Route path="/user" element={<User />} />
             <Route path="/category" element={<Category />} />
-            <Route path="/category/:id" element={<CategoryManagement/>} />
+            <Route path="/tag"   element={<TagManagement/> } />
             {/* <Route path="/oi-contest" element={<OIContestList />} />
             <Route path="/oi-contest/:_id" element={<OIContestManagement />} />
             <Route path="/video" element={<VideoList />} />
@@ -46,6 +48,7 @@ function App() {
             <Route path="/level/:_id" element={<LevelManagement />} />
             <Route path="/stage" element={<StageList />} />
           <Route path="/stage/:_id" element={<StageManagement />} />*/}
+          <Route path='/passage' element={<Passage/>}/>
           </Route> 
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>

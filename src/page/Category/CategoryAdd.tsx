@@ -32,7 +32,7 @@ const CategoryAdd : React.FC<{
         <ProFormText
         key="name"
         name="name"
-        placeholder="请输出类别名"
+        placeholder="请输入类别名"
         />
         <ProFormUploadButton name="pic" label="上传头像"  action={"http://127.0.0.1:8080/upload"}   
   />

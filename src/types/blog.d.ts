@@ -40,8 +40,15 @@ export interface IPassage {
 	desc:      string   
 	CreatedAt: time.Time
 	cate_id:   int
-    cate_name: string
     tags:      ITag[]     
     comments:  IComment[] 
+}
+
+export interface IinsertedPassage {
+	title:     string   
+	content:   string  
+	desc:      string   
+	cate_id:   int
+    tags:      ITag[]     
 }
 
