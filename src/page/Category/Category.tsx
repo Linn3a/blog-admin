@@ -79,7 +79,7 @@ const Category : React.FC<{}> = (props) => {
             }}
             toolBarRender={() => [
               <Button key='create' onClick={() => setAddCategoryVisible(true)}>
-                增加文章
+                增加分类
               </Button>
           ]}
           recordCreatorProps={false}
