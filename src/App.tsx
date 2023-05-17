@@ -56,20 +56,6 @@ function App() {
             <Route path="/user" element={<User />} />
             <Route path="/category" element={<Category />} />
             <Route path="/tag"   element={<TagManagement/> } />
-            {/* <Route path="/oi-contest" element={<OIContestList />} />
-            <Route path="/oi-contest/:_id" element={<OIContestManagement />} />
-            <Route path="/video" element={<VideoList />} />
-            <Route path="/chapter" element={<ChapterList />} />
-            <Route path="/chapter/:cid" element={<ChapterManagement />} />
-            <Route path="/problemlist" element={<ProblemlistList />} />
-            <Route
-              path="/problemlist/:plid"
-              element={<ProblemListManagement />}
-            />
-            <Route path="/level" element={<LevelList />} />
-            <Route path="/level/:_id" element={<LevelManagement />} />
-            <Route path="/stage" element={<StageList />} />
-          <Route path="/stage/:_id" element={<StageManagement />} />*/}
           <Route path='/passage' element={<Passage/>} />
               <Route path='/passage/:id' element={<Comment />}/>
           </Route> 

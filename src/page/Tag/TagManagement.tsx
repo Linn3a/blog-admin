@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { ITag } from '../../types/blog';
 import { ProColumns,EditableProTable, PageContainer } from '@ant-design/pro-components';
-import { Popconfirm,notification,Button,Tag } from 'antd';
+import { Popconfirm,notification,Button,Tag,Space } from 'antd';
 import TagAdd from './TagAdd'
 
 async function fetchAllTags() {
@@ -28,11 +28,22 @@ const TagManagement : React.FC<{}> = (props) => {
         },
         {
             title:"颜色",
-            dataIndex:"color",
+            // dataIndex:"color",
+            render: (text, record, _, action) => [
+              <Tag
+                key="color"
+                color={record.color}
+              >{record.color}</Tag>
+              
+            ]
         },
         {
             title:"所属类别",
             dataIndex:"cate_id"
+        },
+        {
+          title:"文章数",
+          dataIndex:"passage_amount"
         },
         {
             title: '操作',
