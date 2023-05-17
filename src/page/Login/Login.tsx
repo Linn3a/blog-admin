@@ -29,9 +29,9 @@ const Login : React.FC<{}> = (props) => {
         <ProConfigProvider hashed={false}>
           <div style={{ backgroundColor: 'white' }}>
             <LoginForm
-              logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
-              title="Github"
-              subTitle="全球最大的代码托管平台"
+              logo="/src/assets/icon.png"
+              title="博客管理系统"
+              subTitle="欢迎使用，只有管理员才能登录哦"
               onFinish={async (values) => {
                 console.log(values);
                 message.success('提交成功');
@@ -48,14 +48,7 @@ const Login : React.FC<{}> = (props) => {
                   else {
                     notification.error({message:"登录失败"})
                   }
-                //   .then(res => {
-                //     console.log(res.data.data);
-                //     if(res.data.state.ok) {
-                //       localStorage.setItem("ACCESS_TOKEN", res.data.data.Token);
-                //       navigate('/home')
-                //       notification.success({message:"登录成功"})
-                     
-                    // }
+        
               }}
               
               >
