@@ -1,16 +1,36 @@
 import { useState } from 'react'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import axios from 'axios'
 import Layout from "/src/components/Layout/Layout"
 import User from "/src/page/User/User"
 import Category from '/src/page/Category/Category';
-import CategoryManagement from '/src/page/Category/CategoryManagement';
+import Comment from '/src/page/Comment/Comment';``
 import TagManagement from './page/Tag/TagManagement';
+import Login from './page/Login/Login';
 import Passage from './page/Passage/Passage';
 
 const queryClient = new QueryClient();
 function App() {
-
+  const [isLogin,setIslogin] = useState(false);
+  const [isRoot,setIsRoot] = useState(false);
+  let Token = localStorage.getItem("ACCESS_TOKEN");
+  console.log(Token);
+  
+  if(Token != undefined && Token != null ){
+    axios.post('autologin',{Token})
+    .then(res => {
+      if(res.data.state.ok) {
+        setIslogin(true)
+        // if(res.data.data == 1) 
+        console.log(res.data.data);
+        if(res.data.data.id == 1)
+        {
+          setIsRoot(true)
+        } 
+      else setIslogin(false)
+    }})  
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -25,10 +45,12 @@ function App() {
               //     to={"/login?redirect=" + location.pathname}
               //     replace={true}
               //   />
-              // ) : 
-              (
-                <Layout />
-              )
+              // ) 
+              isLogin?
+              <Layout />:
+              
+                <Login setIslogin={setIslogin} />
+              
             }
           >
             <Route path="/user" element={<User />} />
@@ -48,7 +70,8 @@ function App() {
             <Route path="/level/:_id" element={<LevelManagement />} />
             <Route path="/stage" element={<StageList />} />
           <Route path="/stage/:_id" element={<StageManagement />} />*/}
-          <Route path='/passage' element={<Passage/>}/>
+          <Route path='/passage' element={<Passage/>} />
+              <Route path='/passage/:id' element={<Comment />}/>
           </Route> 
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>

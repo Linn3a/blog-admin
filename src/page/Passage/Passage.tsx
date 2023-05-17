@@ -5,6 +5,7 @@ import { IPassage } from '../../types/blog';
 import { ProColumns,EditableProTable, PageContainer } from '@ant-design/pro-components';
 import { Popconfirm,notification,Button,Tag } from 'antd';
 import PassageAdd from './PassageAdd'
+import { useNavigate } from 'react-router-dom';
 
 async function fetchAllPassages() {
     const { data } = await axios.get('/p');    
@@ -12,6 +13,7 @@ async function fetchAllPassages() {
   }
 
 const Passage : React.FC<{}> = (props) => {
+    const navigate = useNavigate()
     const [addPassageVisible,setAddPassageVisible] = useState<boolean>(false)
     const [editableKeys,setEditableRowKeys] = useState<React.Key[]>([]);
     const { data:passages,refetch } = useQuery<IPassage[]>(["passages"],fetchAllPassages)
@@ -70,11 +72,14 @@ const Passage : React.FC<{}> = (props) => {
                       console.log(response.data.state.ok)
                       if(response.data.state.ok) 
                       notification.success({message: '删除成功'})})
-                    .then(refetch);
+                    .then(refetch());
               }}
               >
               <a>删除</a>
-              </Popconfirm>
+              </Popconfirm>,
+              <Button onClick={() =>{
+                navigate(`${record.id}`)
+              }}>管理评论</Button>
             ]
           }
     ]
@@ -95,15 +100,15 @@ const Passage : React.FC<{}> = (props) => {
             type: 'single',
             editableKeys,
             onChange: setEditableRowKeys,
-            // onSave: async (rowKey, data) => {
-            //   console.log(rowKey);
-            //   console.log(data);
-            //   axios.put('/cate/'+rowKey,{
-            //     name:data.name,
-            //     cover:data.cover
-            //   }).then(res => {if(res.data.state.ok) notification.success({message: '编辑成功'})})
-            //     .then(refetch)
-            // }
+            onSave: async (rowKey, data) => {
+              console.log(rowKey);
+              console.log(data);
+              axios.put('/p/'+rowKey,{
+                title:data.title,
+                desc:data.desc
+              }).then(res => {if(res.data.state.ok) notification.success({message: '编辑成功'})})
+                .then(refetch())
+            }
           }}
         />
       

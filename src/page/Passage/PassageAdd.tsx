@@ -26,7 +26,6 @@ const PassageAdd : React.FC<{
       };
       return (
         <Tag
-          // color={value}
           onMouseDown={onPreventMouseDown}
           closable={closable}
           onClose={onClose}
