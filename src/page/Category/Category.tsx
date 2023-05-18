@@ -11,7 +11,7 @@ async function fetchAllCategories() {
   return data.data.cates;
 }
 
-const Category : React.FC<{}> = (props) => {
+const Category : React.FC<{}> = () => {
   const [addCategoryVisible,setAddCategoryVisible] = useState<boolean>(false);
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>([]);
   
@@ -35,7 +35,7 @@ const Category : React.FC<{}> = (props) => {
     {
       title: '操作',
       valueType: 'option',
-      render: (text, record, _, action) => [
+      render: (_1, record, _, action) => [
            <a
             key="editable"
             onClick={() => {
@@ -53,7 +53,7 @@ const Category : React.FC<{}> = (props) => {
                 console.log(response.data.state.ok)
                 if(response.data.state.ok) 
                 notification.success({message: '删除成功'})})
-              .then(refetch());
+              .then(() => {refetch()});
         }}
         >
         <a>删除</a>
@@ -94,7 +94,7 @@ const Category : React.FC<{}> = (props) => {
                 name:data.name,
                 cover:data.cover
               }).then(res => {if(res.data.state.ok) notification.success({message: '编辑成功'})})
-                .then(refetch)
+                .then(() => {refetch()})
             }
           }}
         />

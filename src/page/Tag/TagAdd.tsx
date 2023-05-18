@@ -2,6 +2,7 @@ import React from 'react';
 import { ModalForm,ProFormSelect,ProFormText } from '@ant-design/pro-components'
 import { notification } from "antd"
 import axios from 'axios';
+import { ITag } from '../../types/blog';
 const TagAdd : React.FC<{
     visible: boolean
     setVisible: (v: boolean) => void
@@ -51,7 +52,7 @@ const TagAdd : React.FC<{
          ]}
          request={() => axios.get('cate')
          .then(res => {
-            return  res.data.data.cates.map(u => {
+            return  res.data.data.cates.map((u:ITag) => {
              return {label: u.name, value: u.id}})})}
        />
       

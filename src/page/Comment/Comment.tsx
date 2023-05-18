@@ -1,6 +1,5 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import axios from 'axios'
 import { IComment } from '../../types/blog';
 import { useQuery } from '@tanstack/react-query';
@@ -11,10 +10,10 @@ async function fetchComments(id:string) {
     const { data } = await axios.get(`/comment/${id}`);
     return data.data.comments as IComment[];
 }
-const Comment : React.FC<{}> = (props) => {
+const Comment : React.FC<{}> = () => {
     const { id } = useParams();
     console.log(id);
-    const { data,refetch } = useQuery(['comments',id],() => fetchComments(id))
+    const { data,refetch } = useQuery(['comments',id],() => fetchComments(id||""))
     console.log(data);
     const columns: ProColumns<IComment>[]= [
       {
@@ -37,7 +36,7 @@ const Comment : React.FC<{}> = (props) => {
       {
         title: '操作',
         valueType: 'option',
-        render: (text, record, _, action) => [
+        render: (_1, record, _, _2) => [
           <Popconfirm
           key='delete'
           title='确认删除？'

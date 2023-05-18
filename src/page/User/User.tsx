@@ -8,7 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 
 axios.defaults.baseURL = 'http://127.0.0.1:8080'
 
-const User : React.FC<{}> = (props) => {
+const User : React.FC<{}> = () => {
     const { data: users,refetch } = useQuery<IUser[]>(['users'], fetchAllUsers);
       console.log(users);
     const columns: ProColumns<IUser>[]= [{
@@ -38,7 +38,7 @@ const User : React.FC<{}> = (props) => {
         },{
             title: '操作',
             valueType: 'option',
-            render: (text, record, _, action) => [ 
+            render: (_1, record, _, _2) => [ 
         <Popconfirm
           key='delete'
           title='确认删除？'
@@ -48,7 +48,7 @@ const User : React.FC<{}> = (props) => {
                 console.log(response.data.state.ok)
                 if(response.data.state.ok) 
                 notification.success({message: '删除成功'})})
-                .then(refetch);
+                .then(() => {refetch()});
           }}
         >
           <a>删除</a>
@@ -67,7 +67,7 @@ const User : React.FC<{}> = (props) => {
                 console.log(response.data.state.ok)
                 if(response.data.state.ok) 
                 notification.success({message: '修改成功'})})
-                .then(refetch);
+                .then(() => {refetch()});
           }}}
         >设为/取消管理员</Button>
       ],

@@ -12,7 +12,7 @@ async function fetchAllPassages() {
     return data.data.passages;
   }
 
-const Passage : React.FC<{}> = (props) => {
+const Passage : React.FC<{}> = () => {
     const navigate = useNavigate()
     const [addPassageVisible,setAddPassageVisible] = useState<boolean>(false)
     const [editableKeys,setEditableRowKeys] = useState<React.Key[]>([]);
@@ -54,7 +54,7 @@ const Passage : React.FC<{}> = (props) => {
         {
             title: '操作',
             valueType: 'option',
-            render: (text, record, _, action) => [
+            render: (_1, record, _, action) => [
                  <a
                   key="editable"
                   onClick={() => {
@@ -72,7 +72,7 @@ const Passage : React.FC<{}> = (props) => {
                       console.log(response.data.state.ok)
                       if(response.data.state.ok) 
                       notification.success({message: '删除成功'})})
-                    .then(refetch());
+                    .then(() => { refetch()});
               }}
               >
               <a>删除</a>
@@ -107,7 +107,7 @@ const Passage : React.FC<{}> = (props) => {
                 title:data.title,
                 desc:data.desc
               }).then(res => {if(res.data.state.ok) notification.success({message: '编辑成功'})})
-                .then(refetch())
+                .then(() =>{refetch()})
             }
           }}
         />

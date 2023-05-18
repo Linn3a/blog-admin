@@ -11,20 +11,14 @@ import {
     ProConfigProvider,
   } from '@ant-design/pro-components';
   import { message, notification } from 'antd';
-  import type { CSSProperties } from 'react';
   
-//   type LoginType = 'phone' | 'account';
   
-  const iconStyles: CSSProperties = {
-    marginInlineStart: '16px',
-    color: 'rgba(0, 0, 0, 0.2)',
-    fontSize: '24px',
-    verticalAlign: 'middle',
-    cursor: 'pointer',
-  };
+
   
-const Login : React.FC<{}> = (props) => {
-    const {setIslogin} = props;
+const Login : React.FC<{
+  setIslogin:React.Dispatch<React.SetStateAction<boolean>>
+}> = ({setIslogin}) => {
+   
     return (
         <ProConfigProvider hashed={false}>
           <div style={{ backgroundColor: 'white' }}>
@@ -103,9 +97,6 @@ const Login : React.FC<{}> = (props) => {
       );
 }
 
-Login.propTypes = {
-  
-}
 
 export default Login;
 

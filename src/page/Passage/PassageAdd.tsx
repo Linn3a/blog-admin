@@ -1,13 +1,13 @@
 import React,{useRef, useState} from 'react';
-import { ModalForm,ProFormText,ProFormUploadButton,StepsForm,ProFormInstance,ProFormTextArea,ProFormSelect } from '@ant-design/pro-components'
-import { notification,Tag } from "antd"
+import { ModalForm,ProFormText,StepsForm,ProFormInstance,ProFormTextArea,ProFormSelect } from '@ant-design/pro-components'
+import { notification } from "antd"
 import axios from 'axios';
-import { ITag, IinsertedPassage } from '../../types/blog';
+import { ITag, IinsertedPassage,ICategory } from '../../types/blog';
 const PassageAdd : React.FC<{
     visible: boolean
     setVisible: (v: boolean) => void
     refresh: () => void
-}> = ({visible, setVisible, refresh}) => {
+}> = ({visible, setVisible}) => {
 
     const formRef = useRef<ProFormInstance>();
     const [newPassage,setNewPassage] = useState<IinsertedPassage>({
@@ -18,27 +18,26 @@ const PassageAdd : React.FC<{
         tags:[]
     })
     const [tags,setTags] = useState<ITag[]>([]);
-    const tagRender = (props: CustomTagProps) => {
-      const { label, value, closable, onClose } = props;
-      const onPreventMouseDown = (event: React.MouseEvent<HTMLSpanElement>) => {
-        event.preventDefault();
-        event.stopPropagation();
-      };
-      return (
-        <Tag
-          onMouseDown={onPreventMouseDown}
-          closable={closable}
-          onClose={onClose}
-          style={{ marginRight: 3 }}
-        >
-          {label}
-        </Tag>
-      );
-    };
+    // const _ = (props: CustomTagProps) => {
+    //   const { label, closable, onClose } = props;
+    //   const onPreventMouseDown = (event: React.MouseEvent<HTMLSpanElement>) => {
+    //     event.preventDefault();
+    //     event.stopPropagation();
+    //   };
+    //   return (
+    //     <Tag
+    //       onMouseDown={onPreventMouseDown}
+    //       closable={closable}
+    //       onClose={onClose}
+    //       style={{ marginRight: 3 }}
+    //     >
+    //       {label}
+    //     </Tag>
+    //   );
+    // };
 
            
-           
-
+    
   return (
     <ModalForm
       title='添加文章'
@@ -47,8 +46,8 @@ const PassageAdd : React.FC<{
       modalProps={{
         destroyOnClose: true,
       }}
-      onFinish={() => {refresh}}
-    >
+  
+      >
         {/* <ProFormText
         key="name"
         name="name"
@@ -152,7 +151,7 @@ const PassageAdd : React.FC<{
             ]}
             request={() => axios.get('cate')
             .then(res => {
-               return  res.data.data.cates.map(u => {
+               return  res.data.data.cates.map((u:ICategory) => {
                 return {label: u.name, value: u.id}})})}
           />
         </StepsForm.StepForm>
@@ -166,7 +165,7 @@ const PassageAdd : React.FC<{
             console.log(formRef.current?.getFieldsValue());
             
             console.log(newPassage);
-            newPassage.tags = formRef.current?.getFieldsValue().tags.map(item => ({"id":item}));
+            newPassage.tags = formRef.current?.getFieldsValue().tags.map((item:string) => ({"id":item}));
             axios.post('p',newPassage).then(
               res => { 
                 if(res.data.state.ok) 
@@ -181,7 +180,6 @@ const PassageAdd : React.FC<{
             label="标签"
             name="tags"
             mode="multiple"
-            tagRender={tagRender}
             rules={[
               {
                 required: true,

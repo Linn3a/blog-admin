@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import axios from 'axios'
-import Layout from "/src/components/Layout/Layout"
-import User from "/src/page/User/User"
-import Category from '/src/page/Category/Category';
-import Comment from '/src/page/Comment/Comment';``
+import Layout from "./components/Layout/Layout"
+import User from "./page/User/User"
+import Category from './page/Category/Category';
+import Comment from './page/Comment/Comment';``
 import TagManagement from './page/Tag/TagManagement';
 import Login from './page/Login/Login';
 import Passage from './page/Passage/Passage';
@@ -53,7 +53,7 @@ function App() {
               
             }
           >
-            <Route path="/user" element={<User />} />
+            <Route path="/user" element={isRoot?<User />:<h1>无权限管理用户</h1>} />
             <Route path="/category" element={<Category />} />
             <Route path="/tag"   element={<TagManagement/> } />
           <Route path='/passage' element={<Passage/>} />

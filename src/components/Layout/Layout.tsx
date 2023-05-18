@@ -31,7 +31,7 @@ const route = {
   }
 
   
-const Layout : React.FC<{}> = (props) => {
+const Layout : React.FC<{}> = () => {
   return (
     <ProLayout
         title = "博客管理系统"
