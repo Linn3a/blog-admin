@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import icon from '/src/assets/icon.png';
 import {
     LockOutlined,
     UserOutlined,
@@ -23,7 +24,7 @@ const Login : React.FC<{
         <ProConfigProvider hashed={false}>
           <div style={{ backgroundColor: 'white' }}>
             <LoginForm
-              logo="/src/assets/icon.png"
+              logo={icon}
               title="博客管理系统"
               subTitle="欢迎使用，只有管理员才能登录哦"
               onFinish={async (values) => {

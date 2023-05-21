@@ -18,7 +18,7 @@ function App() {
   console.log(Token);
   
   if(Token != undefined && Token != null ){
-    axios.post('autologin',{Token})
+    axios.post('/autologin',{Token})
     .then(res => {
       if(res.data.state.ok) {
         setIslogin(true)
@@ -40,12 +40,6 @@ function App() {
           <Route
             path="/"
             element={
-              // !localStorage.getItem("sid") ? (
-              //   <Navigate
-              //     to={"/login?redirect=" + location.pathname}
-              //     replace={true}
-              //   />
-              // ) 
               isLogin?
               <Layout />:
               

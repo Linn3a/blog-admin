@@ -6,11 +6,16 @@ import axios from 'axios';
 import { fetchAllUsers } from './api';
 import { useQuery } from '@tanstack/react-query';
 
-axios.defaults.baseURL = 'http://127.0.0.1:8080'
+
+axios.defaults.baseURL = 'http://124.220.198.163:8080'
+// axios.defaults.baseURL = 'http://localhost:8080'
+
 
 const User : React.FC<{}> = () => {
     const { data: users,refetch } = useQuery<IUser[]>(['users'], fetchAllUsers);
       console.log(users);
+      // users == undefined ? [] : users;
+      
     const columns: ProColumns<IUser>[]= [{
         title: 'ID',
         dataIndex: 'id',
@@ -35,6 +40,10 @@ const User : React.FC<{}> = () => {
         },{
             title:'上次登录',
             dataIndex:'last_login',
+        },
+        {
+          title:'生日',
+          dataIndex:'birthday',
         },{
             title: '操作',
             valueType: 'option',
