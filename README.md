@@ -16,19 +16,19 @@ yarn run dev
 会默认在`localhost:5173`运行
 
 如果在本地部署 需要修改请求地址
-## :revolving_hearts:Related Efforts
+## :revolving_hearts: Related Efforts
 
 [主站:woman_technologist:](https://github.com/Linn3a/myblog)
 
 [后端:bar_chart:](https://github.com/Linn3a/blog-backend)
 
-## :bulb:TODO
+## :bulb: TODO
    -  修改文章内容
    -  markdown编辑器
    -  选色框
    -  统计数据
   
-##  :memo:License
+##  :memo: License
 
 [MIT](https://github.com/Linn3a/blog-admin/blob/main/LICENSE)
 
